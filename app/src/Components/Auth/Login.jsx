@@ -1,8 +1,7 @@
 import { React, useState, useContext } from 'react'
 import axios from 'axios'
-// import { GlobalContext } from '../../Context/Context';
+import { GlobalContext } from '../../Context/Context';
 import styles from './Auth.module.css'
-
 
 
 let baseUrl = '';
@@ -10,7 +9,7 @@ if (window.location.href.split(":")[0] === 'http') { baseUrl = 'http://localhost
 
 
 const Login = () => {
-   //  let { state, dispatch } = useContext(GlobalContext);
+   let { state, dispatch } = useContext(GlobalContext);
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
 
@@ -20,15 +19,16 @@ const Login = () => {
          axios.post(`${baseUrl}/login`, {
             email: email,
             password: password
+         }, {
+            withCredentials: true
          })
-         // dispatch({ type: "LOGIN" })
+         dispatch({ type: "LOGIN" })
          console.log("Login Successful")
       }
       catch (error) {
          console.log("error: ", error);
       }
    }
-
 
    return (
       <>

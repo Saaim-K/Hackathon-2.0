@@ -2,12 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import styles from './Auth.module.css'
+import { useNavigate } from 'react-router-dom';
 
 let baseUrl = '';
 if (window.location.href.split(":")[0] === 'http') { baseUrl = 'http://localhost:5000' }
 
 
 const Signup = () => {
+   const navigate = useNavigate()
    const [name, setName] = useState("")
    const [contact, setContact] = useState("")
    const [email, setEmail] = useState("")
@@ -19,6 +21,7 @@ const Signup = () => {
          axios.post(`${baseUrl}/signup`, { name, contact, email, password })
             .then(response => {
                console.log("User Added Succesfully 👍", response.data);
+               navigate("/login")
             })
       }
       catch (error) {
@@ -37,7 +40,7 @@ const Signup = () => {
             </div>
             <div>
                <label>
-                  <input type="text" placeholder="Contact Number" required onChange={(e) => { setContact(e.target.value) }} />
+                  <input type="number" placeholder="Contact Number" required onChange={(e) => { setContact(e.target.value) }} />
                   <span className="required">Contact Number</span>
                </label>
             </div>
