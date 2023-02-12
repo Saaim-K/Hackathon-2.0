@@ -9,7 +9,7 @@ import cookieParser from 'cookie-parser';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongodbURI = process.env.mongodbURI || "mongodb+srv://Backend:Backend@backend.xfgg8bk.mongodb.net/backend?retryWrites=true&w=majority"
+const mongodbURI = process.env.mongodbURI || "mongodb+srv://ecommerce:ecommerce@cluster0.plynqqp.mongodb.net/ecommerce?retryWrites=true&w=majority"
 const SECRET = process.env.SECRET || "Thesharedsecretmustbeatleast32bytesinlength";
 
 
@@ -33,11 +33,11 @@ const productModel = mongoose.model('Products', productSchema);
 let userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, trim: true, lowercase: true, unique: true },
+    contact: { type: String, required: true },
     password: { type: String, required: true },
     createdOn: { type: Date, default: Date.now }
 })
 const userModel = mongoose.model('Users', userSchema);
-
 
 
 
@@ -64,6 +64,7 @@ app.post('/signup', async (req, res) => {
                     // console.log(hashPassword)
                     userModel.create({
                         name: req.body.name,
+                        contact: req.body.contact,
                         email: req.body.email,
                         password: hashPassword,
                     })
@@ -80,18 +81,6 @@ app.post('/signup', async (req, res) => {
     }
 })
 // ----------------------------------- SignUp -----------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
