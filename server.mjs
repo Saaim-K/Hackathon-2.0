@@ -45,7 +45,6 @@ const userModel = mongoose.model('Users', userSchema);
 
 
 
-
 // ----------------------------------- SignUp -----------------------------------
 app.post('/signup', async (req, res) => {
     try {
