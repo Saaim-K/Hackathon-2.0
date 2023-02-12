@@ -13,6 +13,7 @@ const mongodbURI = process.env.mongodbURI || "mongodb+srv://ecommerce:ecommerce@
 const SECRET = process.env.SECRET || "Thesharedsecretmustbeatleast32bytesinlength";
 
 
+
 app.use(express.json())
 app.use(cookieParser())
 mongoose.connect(mongodbURI)
