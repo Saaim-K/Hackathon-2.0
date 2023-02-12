@@ -2,3 +2,11 @@
    margin: 0;
    padding: 0;
 }
+
+::-webkit-scrollbar {
+   width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #15171b;
+}

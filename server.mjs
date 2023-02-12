@@ -214,7 +214,7 @@ app.post('/product', (req, res) => {
     productModel.create({
         name: body.name,
         price: body.price,
-        qunatity: body.qunatity,
+        quantity: body.quantity,
         unit: body.unit
     },
         (error, uploaded) => {
