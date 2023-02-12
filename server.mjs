@@ -23,7 +23,11 @@ app.use(cors({
 
 let productSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    price: Number,
+    category: { type: String, required: true },
+    description: { type: String, required: true },
+    price: { type: Number, required: true },
+    quantity: { type: Number, required: true },
+    unit: { type: String, required: true },
     createdOn: { type: Date, default: Date.now }
 })
 const productModel = mongoose.model('Products', productSchema);
@@ -213,6 +217,8 @@ app.post('/product', (req, res) => {
     }
     productModel.create({
         name: body.name,
+        category: body.category,
+        description: body.description,
         price: body.price,
         quantity: body.quantity,
         unit: body.unit
