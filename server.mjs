@@ -186,28 +186,6 @@ app.use((req, res, next) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ----------------------------------- Create/Add Product -----------------------------------
 app.post('/product', (req, res) => {
     const body = req.body
