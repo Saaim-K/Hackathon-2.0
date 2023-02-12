@@ -381,7 +381,7 @@ process.on('SIGINT', function () {/////this function will run jst before app is 
 
 
 const __dirname = path.resolve()
-const staticPath = path.join(__dirname, '')
+const staticPath = path.join(__dirname, './')
 console.log("PATH-------",staticPath)
 app.use('/'.express.static(staticPath))
 app.use('*'.express.static(staticPath))
