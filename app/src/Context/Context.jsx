@@ -7,8 +7,7 @@ export const GlobalContext = createContext(null);
 export const ContextWrapper = ({ children }) => {
    let data = {
       user: {},
-      isLogin: true,
-      isAdmin: true
+      isLogin: false,
    }
    const [state, dispatch] = useReducer(reducerFunc, data)
    return (

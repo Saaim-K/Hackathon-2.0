@@ -57,24 +57,23 @@ const Cart = () => {
                <input placeholder='Enter Product' type="text" onChange={(e) => (setName(e.target.value))} /> <br />
                <label>Category:</label>
                <select onChange={(e) => { setCategory(e.target.value) }}>
-                  <option value="volvo">Volvo</option>
-                  <option value="volvo">Volvo</option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
-               </select>
-               Description:
-               <input placeholder='Enter Description' type="text" onChange={(e) => (setDescription(e.target.value))} /> <br />
-               Price:
-               <input placeholder='Enter Product Price' type="number" onChange={(e) => (setPrice(e.target.value))} /> <br />
-               Quantity
-               <input placeholder='Enter Amount of Product' type="number" onChange={(e) => (setQuantity(e.target.value))} /> <br />
-               Unit
-               <input placeholder='Enter Unit of Product' type="text" onChange={(e) => (setUnit(e.target.value))} /> <br />
-               <button>Post</button>
-               <button onClick={deleteAll}>Delete All</button>
-            </h3>
-         </form>
+                  <option> Volvo</option>
+               <option value="saab">Saab</option>
+               <option value="mercedes">Mercedes</option>
+               <option value="audi">Audi</option>
+            </select>
+            Description:
+            <input placeholder='Enter Description' type="text" onChange={(e) => (setDescription(e.target.value))} /> <br />
+            Price:
+            <input placeholder='Enter Product Price' type="number" onChange={(e) => (setPrice(e.target.value))} /> <br />
+            Quantity
+            <input placeholder='Enter Amount of Product' type="number" onChange={(e) => (setQuantity(e.target.value))} /> <br />
+            Unit
+            <input placeholder='Enter Unit of Product' type="text" onChange={(e) => (setUnit(e.target.value))} /> <br />
+            <button>Post</button>
+            <button onClick={deleteAll}>Delete All</button>
+         </h3>
+      </form>
       </>
    )
 }

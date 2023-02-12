@@ -31,22 +31,26 @@ const Home = () => {
    return (
       <>
 
-         {
-            product.map((eachProduct, i) =>
-            (
-               <div className={styles.card} key={i}>
-                  <div><img src="https://i.pinimg.com/750x/ce/0d/9e/ce0d9ead299eb0ee550b2e5b9306b882.jpg" alt="" /></div>
-                  <div>
-                     <h1>{eachProduct.name}</h1>
-                     <h1>{eachProduct.category}</h1>
-                     <h1>{eachProduct.description}</h1>
-                     <h1>{eachProduct.quantity}</h1>
-                     <h1>{eachProduct.price}</h1>
-                     <h1>{eachProduct.unit}</h1>
-                  </div>
-               </div>
-            ))
-         }
+         <div className={styles.allProducts}>
+            {
+               product.map((eachProduct, i) =>
+               (
+                  <>
+                     <div className={styles.card} key={i}>
+                        <div className={styles}>
+                           <h1>{eachProduct.name}</h1>
+                           <p>{eachProduct.category}</p>
+                           <h4>{eachProduct.description}</h4>
+                           <h4>{eachProduct.quantity}</h4>
+                           <h3>{eachProduct.price}</h3>
+                           <h2>{eachProduct.unit}</h2>
+                        </div>
+                     </div>
+                     <hr />
+                  </>
+               ))
+            }
+         </div>
       </>
    )
 }
