@@ -29,7 +29,7 @@ let productSchema = new mongoose.Schema({
     quantity: { type: Number, required: true },
     unit: { type: String, required: true },
     createdOn: { type: Date, default: Date.now }
-    
+
 })
 const productModel = mongoose.model('Products', productSchema);
 
@@ -52,137 +52,137 @@ const userModel = mongoose.model('Users', userSchema);
 
 
 // ----------------------------------- SignUp-----------------------------------
-app.post('/signup', async (req, res) => {
-    try {
-        const email = req.body.email.toLowerCase();
-        const password = req.body.password
-        userModel.findOne({ email: email }, async (error, user) => {
-            if (!error) {
-                if (user) {
-                    res.status(409).send({
-                        message: "User already exists. Please try a different email"
-                    });
-                    console.log("User already exist with the following email: ", user.email);
-                    return;
-                } else {
-                    const hashPassword = await bcrypt.hash(password, 10)
-                    // console.log(hashPassword)
-                    userModel.create({
-                        name: req.body.name,
-                        contact: req.body.contact,
-                        email: req.body.email,
-                        password: hashPassword,
-                    })
-                    res.status(201).send(
-                        `User Created`
-                    )
-                    console.log("User Created.")
-                }
-            }
-        })
-    } catch (error) {
-        res.status(500).send(error)
-        console.log("Error While Creating User.")
-    }
-})
-// ----------------------------------- SignUp -----------------------------------
+// app.post('/signup', async (req, res) => {
+//     try {
+//         const email = req.body.email.toLowerCase();
+//         const password = req.body.password
+//         userModel.findOne({ email: email }, async (error, user) => {
+//             if (!error) {
+//                 if (user) {
+//                     res.status(409).send({
+//                         message: "User already exists. Please try a different email"
+//                     });
+//                     console.log("User already exist with the following email: ", user.email);
+//                     return;
+//                 } else {
+//                     const hashPassword = await bcrypt.hash(password, 10)
+//                     // console.log(hashPassword)
+//                     userModel.create({
+//                         name: req.body.name,
+//                         contact: req.body.contact,
+//                         email: req.body.email,
+//                         password: hashPassword,
+//                     })
+//                     res.status(201).send(
+//                         `User Created`
+//                     )
+//                     console.log("User Created.")
+//                 }
+//             }
+//         })
+//     } catch (error) {
+//         res.status(500).send(error)
+//         console.log("Error While Creating User.")
+//     }
+// })
+// // ----------------------------------- SignUp -----------------------------------
 
 
 
 
-// ----------------------------------- Login -----------------------------------
-app.post("/login", (req, res) => {
-    try {
-        const email = req.body.email.toLowerCase();
-        const password = req.body.password;
-        userModel.findOne({ email }, async (error, user) => {
-            if (!error) {
-                if (user) {
-                    const isValid = await bcrypt.compare(password, user.password)
-                    if (isValid) {
-                        const token = jwt.sign({
-                            _id: user._id,
-                            email: data.email,
-                            iat: Math.floor(Date.now() / 1000) - 30,
-                            exp: Math.floor(Date.now() / 1000) + (60 * 60)
-                        }, SECRET)
-                        res.cookie('Token', token, {
-                            maxAge: 86_400_000,
-                            httpOnly: true,
-                            sameSite: 'none',
-                            secure: true
-                        });
-                        res.status(200).send('User Found')
-                        console.log("User Found.", user)
-                    } else {
-                        res.status(401).send('Wrong Password')
-                        console.log("Wrong Password.")
-                    }
-                } else {
-                    res.status(404).send('User not Found')
-                    console.log("User not Found.")
-                }
-            } else {
-                res.status(401).send("Login Failed, Please try later");
-                console.log("Login Failed, Please try later");
-                return;
-            }
-        })
-    } catch (error) {
-        res.status(500).send(error)
-        console.log("No User Found with the following email: ", email)
-    }
-})
-// ----------------------------------- Login -----------------------------------
+// // ----------------------------------- Login -----------------------------------
+// app.post("/login", (req, res) => {
+//     try {
+//         const email = req.body.email.toLowerCase();
+//         const password = req.body.password;
+//         userModel.findOne({ email }, async (error, user) => {
+//             if (!error) {
+//                 if (user) {
+//                     const isValid = await bcrypt.compare(password, user.password)
+//                     if (isValid) {
+//                         const token = jwt.sign({
+//                             _id: user._id,
+//                             email: data.email,
+//                             iat: Math.floor(Date.now() / 1000) - 30,
+//                             exp: Math.floor(Date.now() / 1000) + (60 * 60)
+//                         }, SECRET)
+//                         res.cookie('Token', token, {
+//                             maxAge: 86_400_000,
+//                             httpOnly: true,
+//                             sameSite: 'none',
+//                             secure: true
+//                         });
+//                         res.status(200).send('User Found')
+//                         console.log("User Found.", user)
+//                     } else {
+//                         res.status(401).send('Wrong Password')
+//                         console.log("Wrong Password.")
+//                     }
+//                 } else {
+//                     res.status(404).send('User not Found')
+//                     console.log("User not Found.")
+//                 }
+//             } else {
+//                 res.status(401).send("Login Failed, Please try later");
+//                 console.log("Login Failed, Please try later");
+//                 return;
+//             }
+//         })
+//     } catch (error) {
+//         res.status(500).send(error)
+//         console.log("No User Found with the following email: ", email)
+//     }
+// })
+// // ----------------------------------- Login -----------------------------------
 
 
-// ----------------------------------- Logout -----------------------------------
-app.post("/logout", (req, res) => {
-    res.clearCookie('Token', {
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true
-    })
-    res.status(200).send('Logged Out')
-    console.log("Logged Out.")
-})
-// ----------------------------------- Logout -----------------------------------
+// // ----------------------------------- Logout -----------------------------------
+// app.post("/logout", (req, res) => {
+//     res.clearCookie('Token', {
+//         httpOnly: true,
+//         sameSite: 'none',
+//         secure: true
+//     })
+//     res.status(200).send('Logged Out')
+//     console.log("Logged Out.")
+// })
+// // ----------------------------------- Logout -----------------------------------
 
 
-// ----------------------------------- Middleware -----------------------------------
-app.use((req, res, next) => {
-    console.log(req.cookies)
-    if (!req?.cookies?.Token) {
-        res.status(401).send({
-            message: "Include http-only credentials with every request"
-        })
-        console.log("Include http-only credentials with every request")
-        return;
-    }
-    jwt.verify(req.cookies.Cookies, SECRET, (err, decodedData) => {
-        if (!err) {
-            console.log("decodedData: ", decodedData);
-            const currentTime = new Date().getTime() / 1000;
-            if (decodedData.exp < currentTime) {
-                res.status(401);
-                res.cookie('Token', '', {
-                    maxAge: 1,
-                    httpOnly: true,
-                    sameSite: 'none',
-                    secure: true
-                });
-                res.send({ message: "Token Expired" })
-            } else {
-                console.log("Token Approved");
-                req.body.Cookies = decodedData
-                next();
-            }
-        } else {
-            res.status(401).send("Invalid Token")
-        }
-    });
-})
-// ----------------------------------- Middleware-----------------------------------
+// // ----------------------------------- Middleware -----------------------------------
+// app.use((req, res, next) => {
+//     console.log(req.cookies)
+//     if (!req?.cookies?.Token) {
+//         res.status(401).send({
+//             message: "Include http-only credentials with every request"
+//         })
+//         console.log("Include http-only credentials with every request")
+//         return;
+//     }
+//     jwt.verify(req.cookies.Cookies, SECRET, (err, decodedData) => {
+//         if (!err) {
+//             console.log("decodedData: ", decodedData);
+//             const currentTime = new Date().getTime() / 1000;
+//             if (decodedData.exp < currentTime) {
+//                 res.status(401);
+//                 res.cookie('Token', '', {
+//                     maxAge: 1,
+//                     httpOnly: true,
+//                     sameSite: 'none',
+//                     secure: true
+//                 });
+//                 res.send({ message: "Token Expired" })
+//             } else {
+//                 console.log("Token Approved");
+//                 req.body.Cookies = decodedData
+//                 next();
+//             }
+//         } else {
+//             res.status(401).send("Invalid Token")
+//         }
+//     });
+// })
+// // ----------------------------------- Middleware-----------------------------------
 
 
 

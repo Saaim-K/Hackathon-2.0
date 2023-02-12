@@ -35,19 +35,14 @@ const Home = () => {
             {
                product.map((eachProduct, i) =>
                (
-                  <>
-                     <div className={styles.card} key={i}>
-                        <div className={styles}>
-                           <h1>{eachProduct.name}</h1>
-                           <p>{eachProduct.category}</p>
-                           <h4>{eachProduct.description}</h4>
-                           <h4>{eachProduct.quantity}</h4>
-                           <h3>{eachProduct.price}</h3>
-                           <h2>{eachProduct.unit}</h2>
-                        </div>
-                     </div>
-                     <hr />
-                  </>
+                  <div className={styles} key={i}>
+                     <h1>{eachProduct.name}</h1>
+                     <p>{eachProduct.category}</p>
+                     <h4>{eachProduct.description}</h4>
+                     <h4>{eachProduct.quantity}</h4>
+                     <h3>{eachProduct.price}</h3>
+                     <h2>{eachProduct.unit}</h2>
+                  </div>
                ))
             }
          </div>
