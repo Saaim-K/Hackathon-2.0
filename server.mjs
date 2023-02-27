@@ -14,6 +14,7 @@ const SECRET = process.env.SECRET || "Thesharedsecretmustbeatleast32bytesinlengt
 
 
 
+
 app.use(express.json())
 app.use(cookieParser())
 mongoose.connect(mongodbURI)
